@@ -7,8 +7,6 @@ from Bio import motifs
 from Bio import SeqIO
 from Bio import AlignIO
 
-from .expected_frequencies import naive_freq_tables
-
 import pandas as pd
 import numpy as np
 
@@ -198,22 +196,6 @@ def read_alignment(infile, data_type='fasta', seq_type='dna', pseudo_count=1):
     for key, val in counts_dict.items():
         counts[key] = list(val.values())
     return counts, total
-    """
-    summary_align = AlignInfo.SummaryInfo(alignment)
-    if seq_type == 'dna':
-        info_content = summary_align.information_content(e_freq_table = naive_freq_tables['dna'],
-                                                         chars_to_ignore = ['N'],
-                                                         pseudo_count = pseudo_count)
-    elif seq_type == 'rna':
-        info_content = summary_align.information_content(e_freq_table = naive_freq_tables['rna'],
-                                                         chars_to_ignore = ['N'],
-                                                         pseudo_count = pseudo_count)
-    else:
-        info_content = summary_align.information_content(e_freq_table = naive_freq_tables['aa'],
-                                                         pseudo_count = pseudo_count)
-    motif = create_motif_from_alignment(alignment)
-    return (motif, summary_align.ic_vector)
-    """
 
 
 def create_motif_from_alignment(alignment):
